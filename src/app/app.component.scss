@@ -1,0 +1,149 @@
+
+
+// * {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
+//   font-family: 'Roboto', sans-serif;
+//   color: #747474;
+// // }
+
+// .box {
+//   height:200px;
+//   width:200px;
+//   overflow-y:scroll;
+//   background:red;
+// }
+
+// .product--grid {
+//   display: flex;
+//   flex-direction: column;
+//   div {
+//     img {
+//       width: 100%;
+//       border-radius: 10px;
+//     }
+//     h2, p {
+//       margin: 0;
+//     }
+//   }
+// }
+
+// .message-error {
+//   background-color: red;
+//   color: white;
+//   opacity: 0;
+//   transition: all linear .5s;
+//   &.noText {
+//     opacity: 1;
+//   }
+// }
+
+// .container {
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+// }
+
+// .line-error {
+//   height: 0;
+//   border-bottom: 10px solid;
+//   &.invalid {
+//     border-color: red;
+//   }
+//   &.valid {
+//     border-color: green;
+//   }
+// }
+
+// .main--container {
+//   margin: 0 auto;
+//   width: 100%;
+//   text-align: center;
+//   display: grid;
+//   place-content: center;
+//   h1 {
+//     margin:120px 0 60px 0;
+//   }
+// }
+
+// .container--form {
+//   margin: 0 auto;
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   text-align: center;
+
+//   button {
+//     background-color: #80DA60;
+//     font-size: 15px;
+//     height: 50px;
+//     border: none;
+//     border-radius: 5px;
+//     cursor: pointer;
+//     color: white;
+//     width: 400px;
+//   }
+// }
+
+// .input-group {
+//   margin: 10px 0 10px 0;
+//   display: flex;
+//   flex-direction: column;
+
+//   label {
+//     text-align: start;
+//     margin: 0 0 10px 10px;
+//     font-weight: 400;
+//   }
+
+//   input {
+//     border: none;
+//     background-color:#FBF7F7;
+//     border-radius: 5px;
+//     padding: 15px;
+//     width: 400px;
+//     transition: 1s linear;
+//     &.valid {
+//       border: solid 2px #80DA60;
+//     }
+//   }
+
+// }
+
+// .required--data {
+//   text-align: start;
+//   display: inline-block;
+//   margin: 10px 0 0 10px;
+//   color: red;
+//   opacity: 1;
+//   transition: 2s linear;
+//   &.valid {
+//     opacity: 0;
+//   }
+// }
+
+
+
+
+
+
+// //media
+// @media screen and (min-width: 1024px){
+//   .product--grid {
+//   margin:0 auto;
+//   width: 90%;
+//   display: grid;
+//   grid-template-columns:repeat(3, 1fr);
+//   grid-template-rows:repeat(2, 1fr);
+//   gap:5px;
+//   place-content:center;
+//   }
+// }
+
+// @media screen and (min-width: 1440px){
+//   .product--grid {
+//   grid-template-columns:repeat(4, 1fr);
+//   }
+// }
+

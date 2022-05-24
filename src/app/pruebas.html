@@ -1,0 +1,244 @@
+
+<h1>ngClass & ngStyle</h1>
+<input type="text" required #nameInput4="ngModel" [(ngModel)]="person.name">
+<hr class="line-error"
+  [ngClass]="{
+  'valid': nameInput4.valid,
+  'invalid': nameInput4.invalid
+}">
+<p class="message-error" [class.noText]="nameInput4.invalid">
+  El cambio es requerido</p>
+
+  <div class="container">
+    <div>
+      <input type="number" [(ngModel)]="box.width">
+      <input type="number" [(ngModel)]="box.height">
+      <input type="color" [(ngModel)]="box.background">
+    </div>
+    <div [ngStyle]="{
+      'width.px': box.width,
+      'height.px': box.height,
+      'background-color': box.background,
+      'display': 'block'
+
+    }"></div>
+  </div>
+<hr>
+
+<h1>Class & style</h1>
+<input type="text" required #nameInput2="ngModel" [(ngModel)]="person.name">
+<p class="message-error" [class.noText]="nameInput2.invalid">
+  El cambio es requerido</p>
+  <label>Nombre</label>
+  <input type="text" required #nameInput3="ngModel" [(ngModel)]="person.name">
+  <p [style.font-style]="nameInput3.invalid ? 'italic' : 'normal'">Texto texto texto</p>
+  <div class="container">
+    <div>
+      <input type="text" [(ngModel)]="widthImg">
+    </div>
+    <div>
+      <!-- para modificar el tamaño de la imagen -->
+      <img [style.width.px]="widthImg" [src]="person.avatar" alt="">
+    </div>
+  </div>
+<hr>
+<h1>ngSwitch</h1>
+<input type="text" [(ngModel)]="person.name">
+<div [ngSwitch]="person.name">
+  <p *ngSwitchCase="'eduardo'" >La persona es Eduardo</p>
+  <p *ngSwitchCase="'julian'" >La persona es Julian</p>
+  <p *ngSwitchCase="'camilo'" >La persona es Camilo</p>
+  <p *ngSwitchDefault="">no reconozco ese nombre</p>
+</div>
+<hr>
+<h1>ngFor</h1>
+<input type="text" [(ngModel)]="newName" placeholder="Escribe un nombre">
+<button (click)="addName()">Add name</button>
+<ul>
+  <!-- mensaje para cuando no haya elementos -->
+  <li *ngIf="names.length === 0">No hay nombres</li>
+  <!-- lista de elementos -->
+  <li *ngFor="let name of names; index as i">
+   {{ i }} {{ name }}
+   <!-- funcion para borrar nombres -->
+   <button (click)="deleteName(i)">Delete</button>
+  </li>
+</ul>
+<hr>
+<h1>ngFor para objetos</h1>
+  <div class="product--grid">
+    <!-- //el ngFor solo puede iterar arrays no objetos -->
+    <div *ngFor="let product of products">
+      <img [src]="product.image" alt="image">
+      <h2> {{ product.price }} </h2>
+      <p> {{ product.name }} </p>
+    </div>
+  </div>
+<hr>
+<h1>*ngIf</h1>
+<input type="text" [(ngModel)]="person.name">
+<p *ngIf="person.name === 'Eduardo' ">Soy Eduardo</p>
+<p *ngIf="person.name === 'Julian' && person.age === 18; else elseBlock ">Soy Julian</p>
+<ng-template #elseBlock>
+  <p>No encuentro tu nombre error 404</p>
+</ng-template>
+
+<hr>
+<h1>NgModel</h1>
+<p>Nombre {{ person.name }} </p>
+<input type="text" required="" #nameInput="ngModel" [(ngModel)]= "person.name" >
+<p>Valid: {{ nameInput.valid}} </p>
+<input type="number" max="18" min="10" required="" #ageInput="ngModel" [(ngModel)]= "person.age" >
+<p>Valid: {{ ageInput.valid}} </p>
+
+<hr>
+<h1>Eventos</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<button (click)="toggleButton()">Toggle button</button>
+<p>Edad {{ person.age }}</p>
+<button (click)="ageIncrease()">Age ++</button>
+<div class="box" (scroll)="onScroll($event)">
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet doloribus quas corporis nobis deleniti ducimus et impedit molestias porro? Impedit tempore incidunt sapiente voluptates. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Harum, laborum ex numquam earum adipisci, quod inventore minus voluptatum ad eius ipsam dolorum enim laboriosam voluptatibus?</p>
+</div>
+
+<p>Nombre: {{ person.name }}</p>
+
+<input type="text" [value]="person.name" (keyup)="changeName($event)">
+
+<hr>
+<h1>Propiedades</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<!-- <input type="text" [value]="title">
+<progress max="100" [value]="age"></progress>
+<img width="100px" [src]="img" alt=""> -->
+
+<input type="text" [value]="person.name">
+<progress max="100" [value]="person.age"></progress>
+<img width="100px" [src]="person.avatar" alt="">
+
+<hr>
+<h1>Hola Mundo</h1>
+<h2>{{ "Hola mundo ".repeat(5) }}</h2>
+<p> 3 + 3 = {{ 3 + 3 }} </p>
+<h3>Hola, soy {{ title }} </h3>
+<img width="200px" src="{{ img }}" alt="doom guy">
+
+<!-- <main class="main--container">
+  <h1>Registro</h1>
+  <form (ngSubmit)="onRegister()" #myForm="ngForm">
+    <div class="container--form">
+      <div class="input-group">
+        <label class="item" for="name">Name</label>
+        <input required #inputName="ngModel" type="text" name="name" id="name" placeholder="Example Name" [(ngModel)]="register.name" [class.valid]="inputName.valid">
+        <p class="required--data" [class.valid]="inputName.valid">Este campo es requerido</p>
+      </div>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input  required #inputEmail="ngModel" type="email" name="email" id="email" placeholder="Example@email.com" [(ngModel)]="register.email" [class.valid]="inputEmail.valid">
+        <p class="required--data" [class.valid]="inputEmail.valid">Este campo es requerido</p>
+      </div>
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input required #inputPassword="ngModel" type="password" name="password" id="password" placeholder="*********" [(ngModel)]="register.password" [class.valid]="inputPassword.valid">
+        <p class="required--data" [class.valid]="inputPassword.valid">Este campo es requerido</p>
+      </div>
+      <button [disabled]="myForm.invalid" type="submit">Register</button>
+    </div> -->
+    <!-- <button type="button">Action</button> -->
+  <!-- </form>
+</main> -->
+
+ts
+
+widthImg = 200;
+  title = 'e-commerce-store';
+  img = "https://www.gamereactor.es/media/29/_3112903.jpg";
+  btnDisabled = true;
+
+  register = {
+    name: "",
+    email: "",
+    password: "",
+  }
+
+  age = 25;
+  person = {
+    name: "Eduardo Fuentes",
+    age: 25,
+    avatar: "https://www.gamereactor.es/media/29/_3112903.jpg"
+  }
+
+  names: string[] = ["Eduardo", "Maria", "Fernanda"];
+  newName = "";
+  box = {
+    width: 10,
+    height: 100,
+    background: 'red'
+  };
+
+  products: Product[] = [
+    {
+      name: 'El mejor juguete',
+      price: 565,
+      image: 'https://raw.githubusercontent.com/platzi/angular-fundamentals/10-step/src/assets/images/toy.jpg',
+      category: 'all',
+    },
+    {
+      name: 'Bicicleta casi nueva',
+      price: 356,
+      image: 'https://raw.githubusercontent.com/platzi/angular-fundamentals/10-step/src/assets/images/bike.jpg'
+    },
+    {
+      name: 'Colleción de albumnes',
+      price: 34,
+      image: 'https://raw.githubusercontent.com/platzi/angular-fundamentals/10-step/src/assets/images/album.jpg'
+    },
+    {
+      name: 'Mis libros',
+      price: 23,
+      image: 'https://raw.githubusercontent.com/platzi/angular-fundamentals/10-step/src/assets/images/books.jpg'
+    },
+    {
+      name: 'Casa para perro',
+      price: 34,
+      image: 'https://raw.githubusercontent.com/platzi/angular-fundamentals/10-step/src/assets/images/house.jpg'
+    },
+    {
+      name: 'Gafas',
+      price: 3434,
+      image: 'https://raw.githubusercontent.com/platzi/angular-fundamentals/10-step/src/assets/images/glasses.jpg'
+    }
+  ];
+
+  toggleButton() {
+    this.btnDisabled = !this.btnDisabled;
+  }
+
+  ageIncrease() {
+    this.person.age += 1;
+  }
+
+  onScroll(event: Event) {
+    const element = event.target as HTMLElement;
+    console.log(element.scrollTop);
+  }
+
+  changeName(event: Event) {
+    const element = event.target as HTMLInputElement;
+    this.person.name = element.value;
+  }
+
+  addName() {
+    this.names.push(this.newName);
+    this.newName = "";
+  }
+
+  //necesitamos la pocision del elemento a eliminar por lo que necesitamos el index del mismo
+  deleteName(index: number){
+    //el 1 es para indicar cuantos elementos quiero eliminar
+    this.names.splice(index, 1);
+  }
+
+  onRegister() {
+    console.log(this.register)
+  }

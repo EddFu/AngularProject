@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": "dist/e-commerce-store",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
+
+// https://yarn-store-angular.web.app

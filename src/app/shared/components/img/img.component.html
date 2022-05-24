@@ -1,0 +1,8 @@
+<!-- pasar informacion del padre al hijo -->
+
+<img [src]="img" (load)="imgLoaded()" (error)="imgError()" *ngIf="img; else elseImg" alt="">
+<!-- <h3> {{ counter }} </h3> -->
+<ng-template #elseImg>
+  <!-- esto es por si no carga la imagen -->
+  <img [src]="imageDefault" alt="">
+</ng-template>

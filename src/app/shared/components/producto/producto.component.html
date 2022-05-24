@@ -1,0 +1,15 @@
+<!-- <img width="400" [src]="product.image" alt="imagen producto"> -->
+<div class="container-product">
+  <a [routerLink]="['/product', product.id]">
+    <app-img *ngIf="product.images.length > 0" [img]="product.images[0]" alt="imagen producto"></app-img>
+  </a>
+  <h2> {{ product.title }} </h2>
+  <p>Price {{ product.price | currency:"$" }}</p>
+  <!-- <p>Impuesto: {{  product?.taxes | currency:"COP" }} </p> -->
+  <p appHighlight> {{ product.category.name }} </p>
+  <!-- para agregar al carrito de compras -->
+  <!-- <button (click)="onShowDetail()">Details</button> -->
+  <a routerLink="." [queryParams]="{product:product.id}">Details</a>
+  <button (click)="addToCart()">Add to cart</button>
+</div>
+

@@ -1,0 +1,51 @@
+<!-- <p>
+  Cantidad de productos agregados {{ myShopppingCart.length }}
+</p>
+<p>
+  total: ${{ total }}
+</p> -->
+<!-- pruebas de pipes -->
+<!-- <p>
+  Today: {{ today | date:"short" }}
+</p>
+<p>
+  Today: {{ today | timeAgo }}
+</p>
+<p>
+  Another: {{ date | date:"yyyy/dd/MM" }}
+</p>
+<p>
+  Another: {{ date | timeAgo }}
+</p>
+<p>
+  {{ "hOLA Eduardo" | lowercase | reverse }}
+</p> -->
+<!-- <button (click)="onShowDetail('212')">detail not found</button>
+<button (click)="createNewProduct()">create</button> -->
+<div class="products--grid">
+  <!-- usamos el ngfor para iterar por cada producto dentro del array de productos -->
+<app-producto
+[product]="product"
+*ngFor="let product of products"
+(addedProduct)="addToShopppingCart($event)"
+(showProduct)="onShowDetail($event)"
+></app-producto>
+</div>
+<button class="load-button" (click)="onLoadMore()">Load more</button>
+
+<div class="product-detail" [class.active]="showProductDetail">
+  {{ statusDetail }}
+  <div *ngIf="productChosen">
+    <button (click)="toggleProductDetail()">Close</button>
+    <h1> {{ productChosen.title }} </h1>
+    <swiper
+    [slidesPerView]="1">
+    <ng-template swiperSlide *ngFor="let img of productChosen.images">
+        <img [src]="img" [alt]="productChosen.title">
+    </ng-template>
+    </swiper>
+    <p> {{ productChosen.description }} </p>
+    <button (click)="updateProduct()">Edit</button>
+    <button (click)="deleteProduct()">Delete</button>
+  </div>
+</div>
