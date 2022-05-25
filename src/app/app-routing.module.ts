@@ -7,6 +7,8 @@ import { CustomPreloadService } from './services/custom-preload.service';
 //libreria para cargar los modulos con un observable
 import  { QuicklinkStrategy } from 'ngx-quicklink'
 
+import { AdminGuard } from './guards/admin.guard';
+
 
 const routes: Routes = [
   //nuevo website
@@ -21,6 +23,7 @@ const routes: Routes = [
   //modulo cms
   {
     path: "cms",
+    canActivate: [AdminGuard],
     loadChildren: () => import("./cms/cms.module").then(m => m.CmsModule)
   },
 
