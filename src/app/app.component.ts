@@ -1,10 +1,10 @@
 import { ConstantPool } from '@angular/compiler';
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 //services
 import { AuthService } from "./services/auth.service";
 import { UsersService } from "./services/users.service";
 import { FilesService } from './services/files.service';
+import { TokenService } from './services/token.service';
 //Ambientes
 import { environment } from "../environments/environment";
 
@@ -15,7 +15,7 @@ import { environment } from "../environments/environment";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   imgParent = "";
   showImg = true;
   imgRta= "";
@@ -24,9 +24,15 @@ export class AppComponent {
     private AuthService: AuthService,
     private UsersService: UsersService,
     private fileService: FilesService,
-    private http: HttpClient
-  ) {
+    private tokenService: TokenService,
+  ) {}
 
+  ngOnInit() {
+    const token = this.tokenService.getToken();
+    if (token) {
+      this.AuthService.getProfile()
+      .subscribe()
+    }
   }
 
 

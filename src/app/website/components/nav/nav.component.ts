@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 //services
 import { StoreService } from "../../../services/store.service";
@@ -27,7 +28,9 @@ export class NavComponent implements OnInit {
     //para login de la cuenta
     private authService: AuthService,
     //para render de categorias
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    //
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +40,11 @@ export class NavComponent implements OnInit {
     });
 
     this.getAllCategories();
+    //vigilar el estado del login
+    this.authService.user$
+    .subscribe(data => {
+      this.profile = data;
+    })
   }
 
 
@@ -47,9 +55,7 @@ export class NavComponent implements OnInit {
   login() {
     this.authService.loginAndGet("maria@mail.com", "12345")
     .subscribe(user => {
-      this.profile = user;
-      // console.log(rta.access_token);
-      // this.getProfile();
+      this.router.navigate(['/profile']);
     });
   }
 
@@ -58,6 +64,12 @@ export class NavComponent implements OnInit {
     .subscribe(data => {
       this.categories = data;
     })
+  }
+
+  logOut() {
+    this.authService.logOut();
+    this.profile = null;
+    this.router.navigate(['/home']);
   }
 
 }

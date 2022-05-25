@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { switchMap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 //solo para desarrollo
 // import { environment } from 'src/environments/environment';
@@ -23,6 +24,13 @@ export class AuthService {
   // para CORDS
   // private apiUrl = `${environment.API_URL}/api/auth`;
 
+
+  //para el usuario logeado
+  private user = new BehaviorSubject<User | null>(null);
+
+  //observable
+  user$ = this.user.asObservable();
+
   constructor(
     private http: HttpClient,
     private tokenService: TokenService
@@ -37,14 +45,10 @@ export class AuthService {
   }
 
   getProfile() {
-    // const headers = new HttpHeaders();
-    // headers.set('Authorization',  `Bearer ${token}`);
-    return this.http.get<User>(`${this.apiUrl}/profile`, {
-      // headers: {
-      //   Authorization: `Bearer ${token}`,
-      //   // 'Content-type': 'application/json'
-      // }
-    });
+    return this.http.get<User>(`${this.apiUrl}/profile`)
+    .pipe(
+      tap(user => this.user.next(user))
+    );
   }
 
 
@@ -53,5 +57,9 @@ export class AuthService {
     .pipe (
       switchMap(() => this.getProfile()),
     )
+  }
+
+  logOut() {
+    this.tokenService.removeToken();
   }
 }
