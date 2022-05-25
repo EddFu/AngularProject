@@ -13,9 +13,9 @@ import { CreateUserDTO, User } from "../models/user.model"
 })
 export class UsersService {
 
-  // private apiUrl = "https://young-sands-07814.herokuapp.com/api/users";
+  private apiUrl = "https://young-sands-07814.herokuapp.com/api/users";
   // para CORDS
-  private apiUrl = `${environment.API_URL}/api/users`;
+  // private apiUrl = `${environment.API_URL}/api/users`;
 
   constructor(
     private http:HttpClient

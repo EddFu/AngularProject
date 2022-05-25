@@ -4,6 +4,8 @@ import { SwiperModule } from 'swiper/angular';
 
 //importacion del shared module
 import { SharedModule } from "../shared/shared.module"
+//libreria para cargar los modulos con un observable
+import  { QuicklinkModule } from 'ngx-quicklink'
 
 //componentes
 import { WebsiteRoutingModule } from './website-routing.module';
@@ -34,7 +36,8 @@ import { NavComponent } from './components/nav/nav.component';
     CommonModule,
     WebsiteRoutingModule,
     SharedModule,
-    SwiperModule
+    SwiperModule,
+    QuicklinkModule
   ]
 })
 export class WebsiteModule { }

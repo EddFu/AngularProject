@@ -45,7 +45,7 @@ export class NavComponent implements OnInit {
   }
 
   login() {
-    this.authService.loginAndGet("eduardofu@mail.com", "eduardo")
+    this.authService.loginAndGet("maria@mail.com", "12345")
     .subscribe(user => {
       this.profile = user;
       // console.log(rta.access_token);

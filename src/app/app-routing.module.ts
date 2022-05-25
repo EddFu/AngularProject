@@ -4,6 +4,9 @@ import { RouterModule, Routes, PreloadingStrategy } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { CustomPreloadService } from './services/custom-preload.service';
+//libreria para cargar los modulos con un observable
+import  { QuicklinkStrategy } from 'ngx-quicklink'
+
 
 const routes: Routes = [
   //nuevo website
@@ -30,7 +33,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: CustomPreloadService
+    // preloadingStrategy: CustomPreloadService
+    preloadingStrategy: QuicklinkStrategy
   })],
   exports: [RouterModule]
 })

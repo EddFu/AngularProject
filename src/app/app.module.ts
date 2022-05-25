@@ -3,7 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 //se trae el HTTP_INTERCEPTORS para el uso de interceptores
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+//libreria para cargar los modulos con un observable
+import  { QuicklinkModule } from 'ngx-quicklink'
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,7 @@ import { HighlightDirective } from './directives/highlight.directive';
 import { TimeInterceptor } from './interceptors/time.interceptor';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { NotFoundComponent } from './not-found/not-found.component';
+
 
 
 
@@ -26,6 +28,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    QuicklinkModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true},

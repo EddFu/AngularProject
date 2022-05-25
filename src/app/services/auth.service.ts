@@ -24,7 +24,7 @@ export class AuthService {
   // private apiUrl = `${environment.API_URL}/api/auth`;
 
   constructor(
-    private http:HttpClient,
+    private http: HttpClient,
     private tokenService: TokenService
   ) {  }
 
