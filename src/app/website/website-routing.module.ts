@@ -36,7 +36,10 @@ const routes: Routes = [
       {
         //se pone el /:id para indicarle que se recibira un parametro por url
         path: "category",
-        loadChildren: () => import('./pages/category/category.module').then(m => m.CategoryModule)
+        loadChildren: () => import('./pages/category/category.module').then(m => m.CategoryModule),
+        data: {
+          preload: true,
+        }
       },
 
       {

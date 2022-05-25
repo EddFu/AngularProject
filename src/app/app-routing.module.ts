@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
+import { RouterModule, Routes, PreloadingStrategy } from '@angular/router';
 
 import { NotFoundComponent } from './not-found/not-found.component';
 
-const routes: Routes = [
+import { CustomPreloadService } from './services/custom-preload.service';
 
+const routes: Routes = [
   //nuevo website
   {
     path: "",
-    loadChildren: () => import("./website/website.module").then(m => m.WebsiteModule)
+    loadChildren: () => import("./website/website.module").then(m => m.WebsiteModule),
+    data: {
+      preload: true,
+    }
   },
 
   //modulo cms
@@ -20,16 +24,15 @@ const routes: Routes = [
   {
     path: "**",
     component: NotFoundComponent
-  },
-
-
+  }
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    //para cargar todos los modulos luego de haber hecho el primer render
-    preloadingStrategy: PreloadAllModules
+    preloadingStrategy: CustomPreloadService
   })],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
