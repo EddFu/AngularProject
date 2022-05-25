@@ -20,7 +20,7 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
 
-  private apiUrl = "https://young-sands-07814.herokuapp.com/api/auth";
+  private apiUrl = "https://damp-spire-59848.herokuapp.com/api/auth";
   // para CORDS
   // private apiUrl = `${environment.API_URL}/api/auth`;
 
