@@ -1,7 +1,7 @@
 [build]
-  publish = “dist/e-commerce-store”
-  command = “ng build”
+  publish = "dist/e-commerce-store"
+  command = "ng build"
 [[redirects]]
-  from = “/*”
-  to = “/index.html”
+  from = "/*"
+  to = "/index.html"
   status = 200
